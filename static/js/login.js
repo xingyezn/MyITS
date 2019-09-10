@@ -58,7 +58,7 @@ var Auth = {
 			Auth.vars.password_group.style.margin = 0;
 		}, 100);
 		
-		Auth.vars.login_btn.innerText = '忘记密码';
+		Auth.vars.login_btn.innerText = '找回密码';
 
 		Auth.setHeight(Auth.vars.lowin_wrapper_height - Auth.vars.password_group_height);
 		Auth.vars.lowin_login.querySelector('form').setAttribute('action', Auth.vars.option.forgot_url);

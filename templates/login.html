@@ -13,17 +13,23 @@
 		<div class="lowin-brand">
 			<img src="{{ url_for('static',filename="images/logo.png") }}" alt="logo">
 		</div>
+
 		<div class="lowin-wrapper">
 			<div class="lowin-box lowin-login">
 				<div class="lowin-box-inner">
-					<form method="post">
+					<form method="post" action="{{ url_for('/') }}" name="/">
 						<p>登录CSits</p>
+                        {% if message %}
+            <p style="text-align: center;" class="text-danger">{{ message }}</p>
+                 {% endif %}
 						<div class="lowin-group">
 							<label>邮箱 <a href="#" class="login-back-link">登录?</a></label>
 							<input type="email" autocomplete="email" name="email" class="lowin-input">
 						</div>
 						<div class="lowin-group password-group">
-							<label>密码 <a href="#" class="forgot-link">忘记密码?</a></label>
+							<label>密码
+                                <!--a href="#" class="forgot-link">忘记密码?</a 后面再去处理-->
+                            </label>
 							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
 						</div>
 						<button class="lowin-btn login-btn" type="submit">
@@ -39,11 +45,14 @@
 
 			<div class="lowin-box lowin-register">
 				<div class="lowin-box-inner">
-					<form>
+					<form method="post" action="{{ url_for('register') }}" name="register" role="form">
 						<p>注册CSits</p>
+                         {% if message %}
+            <p style="text-align: center;" class="text-danger">{{ message }}</p>
+                 {% endif %}
 						<div class="lowin-group">
 							<label>姓名</label>
-							<input type="text" name="name" autocomplete="name" class="lowin-input">
+							<input type="text" name="username" autocomplete="username" class="lowin-input" value="测试">
 						</div>
 						<div class="lowin-group">
 							<label>邮箱</label>
@@ -51,27 +60,27 @@
 						</div>
 						<div class="lowin-group">
 							<label>密码</label>
-							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input" value="123456">
 						</div>
 						<div class="lowin-group">
 							<label>重复密码</label>
-							<input type="password" name="repassword" class="lowin-input">
+							<input type="password" name="repassword" class="lowin-input" value="123456">
 						</div>
                         <div class="lowin-group">
 							<label>学校</label>
-							<input type="text" name="schoolname" class="lowin-input">
+							<input type="text" name="schoolname" class="lowin-input" value="复旦中学">
 						</div>
                         <div class="lowin-group">
 							<label>年级</label>
-							<input type="text" name="grade"  class="lowin-input">
+							<input type="text" name="grade"  class="lowin-input" value="10">
 						</div>
                         <div class="lowin-group">
 							<label>年龄</label>
-							<input type="text" name="userage" class="lowin-input">
+							<input type="text" name="userage" class="lowin-input" value="15">
 						</div>
                         <div class="lowin-group">
 							<label>性别</label>
-							<input type="text" name="usergender" class="lowin-input">
+							<input type="text" name="usergender" class="lowin-input" value="2">
 						</div>
 						<button class="lowin-btn">
 							注册
@@ -94,7 +103,7 @@
 	<script>
 		Auth.init({
 			login_url: '',
-			forgot_url: '#forgot'
+			forgot_url: ''
 		});
 	</script>
 </body>

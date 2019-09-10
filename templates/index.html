@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
+    <link rel="icon" href="{{ url_for('static',filename="images/logo.png") }}" type="image/x-icon"/>
 </head>
 <body>
-欢迎使用CSits！
+{{ g.user.username }}欢迎使用CSits！
+<a href="{{ url_for('logout') }}">注销</a>
 </body>
 </html>

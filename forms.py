@@ -16,6 +16,21 @@ class LoginForm(BaseForms):
     email = StringField(validators=[Email(message='请输入正确的邮箱格式'),InputRequired(message='请输入邮箱！')])
     password = StringField(validators=[Length(6,20,message='请输入正确格式的密码')])
 
+# 注册用户的表单检测
+class RegisterForm(BaseForms):
+    email = StringField(validators=[Email(message='请输入正确的邮箱格式'), InputRequired(message='请输入邮箱！')])
+    username = StringField(validators=[InputRequired(message='请输入用户名')])
+    password = StringField(validators=[Length(6, 20, message='请输入正确格式的密码')])
+    repassword = StringField(validators=[EqualTo("password", message='密码必须保持一致')])
+    schoolname = StringField(validators=[InputRequired(message='请输入学校姓名')])
+    grade = IntegerField(validators=[InputRequired(message='请选择用户年级')])
+    userage = IntegerField(validators=[InputRequired(message='请选择用户年龄')])
+    usergender = IntegerField(validators=[InputRequired(message='请选择用户性别')])
+
+    def validate_email(self, field):
+        if User.query.filter(User.email == field.data).first():
+            raise ValidationError('该邮箱已被注册请另外选择邮箱！')
+
 """
 # 重置密码的表单检测
 class ResetpwdForm(BaseForms):
@@ -49,20 +64,7 @@ class ResetEmailForm(BaseForms):
             raise ValidationError('不能修改为相同的邮箱！')
 
 """
-# 注册用户的表单检测
-class RegisterForm(BaseForms):
-    email = StringField(validators=[Email(message='请输入正确的邮箱格式'), InputRequired(message='请输入邮箱！')])
-    password = StringField(validators=[Length(6, 20, message='请输入正确格式的密码')])
-    username = StringField(validators=[Length(1, 20, message='请输入正确的账号格式'), InputRequired(message='请输入用户名')])
-    repassword = StringField(validators=[EqualTo("password", message='密码必须保持一致')])
-    schoolname = StringField(validators=[InputRequired(message='请输入学校姓名')])
-    grade = IntegerField(validators=[InputRequired(message='请选择用户年级')])
-    userage = IntegerField(validators=[InputRequired(message='请选择用户年龄')])
-    usergender = IntegerField(validators=[InputRequired(message='请选择用户性别')])
 
-    def validate_email(self, field):
-        if User.query.filter(User.email == field.data).first():
-            raise ValidationError('该邮箱已被注册请另外选择邮箱！')
 
 # 添加数据的表单检测
 class AddDataForm(BaseForms):
