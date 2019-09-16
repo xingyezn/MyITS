@@ -13,11 +13,19 @@ app = Flask(__name__)
 app.config.from_object(config)
 db.init_app(app)
 
+
 @app.route('/index')
 @login_required
 def index():
     flash('登录成功')
     return render_template('index.html')
+
+
+@app.route('/question')
+@login_required
+def question():
+    flash('登录成功')
+    return render_template('question.html')
 
 #在请求之前进行的检测，修饰函数。用来确定g的数据的
 @app.before_request
@@ -47,7 +55,7 @@ class LoginView(views.MethodView):
                     # 如果设置sesion.premanent = True
                     # 过期时间为30天
                     #session.permanent = True
-                return redirect(url_for('index'))
+                return redirect(url_for('question'))
             else:
                 #flash('邮箱或密码错误')
                 return self.get(message='邮箱或密码错误')

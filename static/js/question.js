@@ -42,12 +42,25 @@
 		 var clear_select = document.getElementById("select"+ q_num + "_" +i);
 		 clear_select.style.display = 'none';
 		 var my_button = document.getElementById("value"+ q_num + "_" + i);
-		 my_button.value = null;
+		 my_button.value = 100;
 	 }
 	 var select0 = document.getElementById("select"+q_num+"_0");
 	 select0.style.display = 'none';
  }
 
-function verify() {
-alert('cuowu')
+function submit_data() {
+	for (i=1;i<=25;i++){
+		for(j=1;j<=4;j++){
+			var my_button = document.getElementById("value"+ i + "_" + j);
+			console.log(my_button.value)
+			if(my_button.value == 100){
+				location.href = "#question" + i;
+				alert('还有题目没有完成！请完成所有题目！');
+				return 0;
+			}
+		}
+	}
+    var question_form = document.getElementById('question_form');
+    question_form.submit();
+    question_form.action="{{ url_for('/index') }}"
 }
