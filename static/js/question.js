@@ -32,7 +32,7 @@
 	}
 	var select0 = document.getElementById("select"+q_num+"_0");
 		select0.style.display = 'block';
-		console.log('test')
+		//console.log('test')
 	}
  }
  
@@ -52,15 +52,49 @@ function submit_data() {
 	for (i=1;i<=25;i++){
 		for(j=1;j<=4;j++){
 			var my_button = document.getElementById("value"+ i + "_" + j);
-			console.log(my_button.value)
+			//console.log(my_button.value)
 			if(my_button.value == 100){
-				location.href = "#question" + i;
-				alert('还有题目没有完成！请完成所有题目！');
-				return 0;
+				//location.href = "#question" + i;
+				//alert('还有题目没有完成！请完成所有题目！');
+				//return 0;
 			}
 		}
 	}
+	var SF = 0;
+	var ST = 0;
+	var NT = 0;
+	var NF = 0;
+	for(j=1;j<=25;j++){
+		var one_SF = document.getElementsByName("SF"+j);
+		SF = SF + parseInt(one_SF[0].value);
+
+		var one_ST = document.getElementsByName("ST"+j);
+		ST = ST + parseInt(one_ST[0].value);
+
+		var one_NT = document.getElementsByName("NT"+j);
+		NT = NT + parseInt(one_NT[0].value);
+
+		var one_NF = document.getElementsByName("NF"+j);
+		NF = NF + parseInt(one_NF[0].value);
+	}
+	var SF_b = document.getElementById("SF");
+	SF_b.value = SF;
+
+	var ST_b = document.getElementById("ST");
+	ST_b.value = ST;
+
+	var NT_b = document.getElementById("NT");
+	NT_b.value = NT;
+
+	var NF_b = document.getElementById("NF");
+	NF_b.value = NF;
+	/*
+	console.log(SF);
+	console.log(ST);
+	console.log(NT);
+	console.log(NF);*/
+	alert("你的SF得分为"+SF + ";你的ST得分为" + ST + ";你的NT得分为" + NT + ";你的NF得分为" + NF + ";")
     var question_form = document.getElementById('question_form');
     question_form.submit();
-    question_form.action="{{ url_for('/index') }}"
+    //question_form.action="{{ url_for('index') }}"
 }

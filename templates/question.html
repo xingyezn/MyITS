@@ -62,7 +62,7 @@
     </div>
 <div class="question">
 <div class="action-nav-normal">
-	<form method="post" id="question_form" >
+	<form method="post" id="question_form" action="{{ url_for('question') }}">
         <div class="one_row">
         <div class="span1 action-nav-button">
       <a  title="" name="question1">
@@ -1115,6 +1115,10 @@
         </div>
 
         <div class="one_row">
+            <input type="hidden"  name="SF" id="SF" class="span1">
+            <input type="hidden"  name="ST" id="ST" class="span1">
+            <input type="hidden"  name="NT" id="NT" class="span1">
+            <input type="hidden"  name="NF" id="NF" class="span1">
       <button class="button span3" type="button" onclick="submit_data()">
           确定提交
       </button>

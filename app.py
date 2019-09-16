@@ -4,7 +4,8 @@ import config
 from exts import db
 from decorators import login_required
 from models import User,Role,CMSPermission
-from forms import LoginForm,RegisterForm
+from forms import LoginForm, RegisterForm, AddDataForm
+
 """
 这里是智能导学系统的app模块
 """
@@ -20,12 +21,6 @@ def index():
     flash('登录成功')
     return render_template('index.html')
 
-
-@app.route('/question')
-@login_required
-def question():
-    flash('登录成功')
-    return render_template('question.html')
 
 #在请求之前进行的检测，修饰函数。用来确定g的数据的
 @app.before_request
@@ -67,7 +62,7 @@ class LoginView(views.MethodView):
 app.add_url_rule('/',view_func=LoginView.as_view('/'))
 
 # 注销视图函数
-@app.route('/logout/')
+@app.route('/logout')
 @login_required
 def logout():
     # session.clear()
@@ -132,6 +127,129 @@ class AddUserView(views.MethodView):
 # 绑定函数
 app.add_url_rule('/register',view_func=AddUserView.as_view('register'))
 
+
+# 添加问卷数据
+class AddDataView(views.MethodView):
+
+    def get(self,message=None):
+        return render_template('question.html')
+
+    def post(self):
+        form = AddDataForm(request.form)
+        #print('test')
+        SF1 = form.SF1.data
+        SF2 = form.SF2.data
+        SF3 = form.SF3.data
+        SF4 = form.SF4.data
+        SF5 = form.SF5.data
+        SF6 = form.SF6.data
+        SF7 = form.SF7.data
+        SF8 = form.SF8.data
+        SF9 = form.SF9.data
+        SF10 = form.SF10.data
+        SF11 = form.SF11.data
+        SF12 = form.SF12.data
+        SF13 = form.SF13.data
+        SF14 = form.SF14.data
+        SF15 = form.SF15.data
+        SF16 = form.SF16.data
+        SF17 = form.SF17.data
+        SF18 = form.SF18.data
+        SF19 = form.SF19.data
+        SF20 = form.SF20.data
+        SF21 = form.SF21.data
+        SF22 = form.SF22.data
+        SF23 = form.SF23.data
+        SF24 = form.SF24.data
+        SF25 = form.SF25.data
+
+        ST1 = form.ST1.data
+        ST2 = form.ST2.data
+        ST3 = form.ST3.data
+        ST4 = form.ST4.data
+        ST5 = form.ST5.data
+        ST6 = form.ST6.data
+        ST7 = form.ST7.data
+        ST8 = form.ST8.data
+        ST9 = form.ST9.data
+        ST10 = form.ST10.data
+        ST11 = form.ST11.data
+        ST12 = form.ST12.data
+        ST13 = form.ST13.data
+        ST14 = form.ST14.data
+        ST15 = form.ST15.data
+        ST16 = form.ST16.data
+        ST17 = form.ST17.data
+        ST18 = form.ST18.data
+        ST19 = form.ST19.data
+        ST20 = form.ST20.data
+        ST21 = form.ST21.data
+        ST22 = form.ST22.data
+        ST23 = form.ST23.data
+        ST24 = form.ST24.data
+        ST25 = form.ST25.data
+
+        NT1 = form.NT1.data
+        NT2 = form.NT2.data
+        NT3 = form.NT3.data
+        NT4 = form.NT4.data
+        NT5 = form.NT5.data
+        NT6 = form.NT6.data
+        NT7 = form.NT7.data
+        NT8 = form.NT8.data
+        NT9 = form.NT9.data
+        NT10 = form.NT10.data
+        NT11 = form.NT11.data
+        NT12 = form.NT12.data
+        NT13 = form.NT13.data
+        NT14 = form.NT14.data
+        NT15 = form.NT15.data
+        NT16 = form.NT16.data
+        NT17 = form.NT17.data
+        NT18 = form.NT18.data
+        NT19 = form.NT19.data
+        NT20 = form.NT20.data
+        NT21 = form.NT21.data
+        NT22 = form.NT22.data
+        NT23 = form.NT23.data
+        NT24 = form.NT24.data
+        NT25 = form.NT25.data
+
+        NF1 = form.NF1.data
+        NF2 = form.NF2.data
+        NF3 = form.NF3.data
+        NF4 = form.NF4.data
+        NF5 = form.NF5.data
+        NF6 = form.NF6.data
+        NF7 = form.NF7.data
+        NF8 = form.NF8.data
+        NF9 = form.NF9.data
+        NF10 = form.NF10.data
+        NF11 = form.NF11.data
+        NF12 = form.NF12.data
+        NF13 = form.NF13.data
+        NF14 = form.NF14.data
+        NF15 = form.NF15.data
+        NF16 = form.NF16.data
+        NF17 = form.NF17.data
+        NF18 = form.NF18.data
+        NF19 = form.NF19.data
+        NF20 = form.NF20.data
+        NF21 = form.NF21.data
+        NF22 = form.NF22.data
+        NF23 = form.NF23.data
+        NF24 = form.NF24.data
+        NF25 = form.NF25.data
+
+        SF = form.SF.data
+        ST = form.ST.data
+        NT = form.NT.data
+        NF = form.NF.data
+
+
+        return redirect(url_for('index'))
+# 绑定函数
+app.add_url_rule('/question',view_func=AddDataView.as_view('question'))
 
 if __name__ == '__main__':
     app.run()
