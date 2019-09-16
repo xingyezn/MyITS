@@ -2,6 +2,9 @@
  function clicks(q_num,num){
 	var my_select = document.getElementById("select"+ q_num + "_" + num);
 	var my_button = document.getElementById("value"+ q_num + "_" + num);
+	if (my_select.style.display == 'block'){
+		return 0;
+	}
 	var all_num = [5,3,1,0]
 	value = 0
 	for(i=1;i<=4;i++){
