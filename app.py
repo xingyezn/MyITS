@@ -18,8 +18,11 @@ db.init_app(app)
 @app.route('/index')
 @login_required
 def index():
-    flash('登录成功')
-    return render_template('index.html')
+    question = Questionnaire.query.filter_by(user_id=g.user.id).first()
+    context = {
+        'child' : question
+    }
+    return render_template('index.html',**context)
 
 
 #在请求之前进行的检测，修饰函数。用来确定g的数据的
@@ -50,6 +53,8 @@ class LoginView(views.MethodView):
                     # 如果设置sesion.premanent = True
                     # 过期时间为30天
                     #session.permanent = True
+                if Questionnaire.query.filter_by(user_id=user.id).first():
+                    return redirect(url_for('index'))
                 return redirect(url_for('question'))
             else:
                 #flash('邮箱或密码错误')
@@ -352,6 +357,7 @@ class AddDataView(views.MethodView):
             NT=NT,
             NF=NF
         )
+
         db.session.add(questionnaire)
         db.session.commit()
 

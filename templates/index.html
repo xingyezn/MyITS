@@ -5,6 +5,86 @@
     <title>首页</title>
 </head>
 <body>
-<h2>{{ g.user.username }},欢迎使用CSits！ </h2>
+
+<h2 style="text-align: center">{{ g.user.username }},欢迎使用CSits！ <a href="{{ url_for("logout") }}">注销</a></h2>
+<p> 你的学习风格如下：</p>
+<table border="1px">
+    <thead>
+        <tr>
+            <th>风格</th>
+            <th>分数</th>
+            <th>偏好程度</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>S-F感官-感受</th>
+        <th>{{ child.SF }}</th>
+        <th>{% if child.SF <= 24 %}
+            非常弱
+            {% elif child.SF > 24 and child.SF <= 49 %}
+            不太强；不太适合
+            {% elif child.SF > 49 and child.SF <= 74 %}
+            中等
+            {% elif child.SF > 74 and child.SF <= 99 %}
+            强；适合
+            {% elif child.SF > 99 and child.SF <= 125 %}
+            非常强烈；非常适合
+            {% endif %}
+        </th>
+    </tr>
+    <tr>
+        <th>S-T感官-思考</th>
+        <th>{{ child.ST }}</th>
+        <th>
+            {% if child.ST <= 24 %}
+            非常弱
+            {% elif child.ST > 24 and child.ST <= 49 %}
+            不太强；不太适合
+            {% elif child.ST > 49 and child.ST <= 74 %}
+            中等
+            {% elif child.ST > 74 and child.ST <= 99 %}
+            强；适合
+            {% elif child.ST > 99 and child.ST <= 125 %}
+            非常强烈；非常适合
+            {% endif %}
+        </th>
+    </tr>
+    <tr>
+        <th>N-T直觉-思考</th>
+        <th>{{ child.NT }}</th>
+        <th>
+            {% if child.NT <= 24 %}
+            非常弱
+            {% elif child.NT > 24 and child.NT <= 49 %}
+            不太强；不太适合
+            {% elif child.NT > 49 and child.NT <= 74 %}
+            中等
+            {% elif child.NT > 74 and child.NT <= 99 %}
+            强；适合
+            {% elif child.NT > 99 and child.NT <= 125 %}
+            非常强烈；非常适合
+            {% endif %}
+        </th>
+    </tr>
+    <tr>
+        <th>N-F直觉-感受</th>
+        <th>{{ child.NF }}</th>
+        <th>
+            {% if child.NF <= 24 %}
+            非常弱
+            {% elif child.NF > 24 and child.NF <= 49 %}
+            不太强；不太适合
+            {% elif child.NF > 49 and child.NF <= 74 %}
+            中等
+            {% elif child.NF > 74 and child.NF <= 99 %}
+            强；适合
+            {% elif child.NF > 99 and child.NF <= 125 %}
+            非常强烈；非常适合
+            {% endif %}
+        </th>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
